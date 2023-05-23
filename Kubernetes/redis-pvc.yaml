@@ -1,0 +1,28 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: redis-pv
+  namespace: hacker-company
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redisdb-pvc
+  namespace: hacker-company
+spec:
+  storageClassName: ""
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redispod
+  namespace: hacker-company
+spec:
+  containers:
+    - image: redis
+      name: redisdb
+      volumeMounts:
+        - name: redis-data
+          mountPath: /data
+      ports:
+        - containerPort: 6379
+          protocol: TCP
+  volumes:
+    - name: redis-data
+      persistentVolumeClaim:
+        claimName: redisdb-pvc
